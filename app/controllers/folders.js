@@ -1,4 +1,3 @@
-const jsonwebtoken = require('jsonwebtoken');
 const Folder = require('../models/folders');
 
 class FoldersController {
@@ -49,10 +48,7 @@ class FoldersController {
     }
     
     async delete (ctx) {
-        const folder = await Folder.findByIdAndRemove(ctx.params.id);
-        if (!folder) {
-            ctx.throw(404, '该文件夹不存在');
-        }
+        await Folder.findByIdAndRemove(ctx.params.id);
         ctx.status = 204;
     }
 
