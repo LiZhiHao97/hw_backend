@@ -63,7 +63,7 @@ class UsersController {
             ctx.throw(401, '用户名或密码不正确')
         }
         const { _id, username, role } = user;;
-        const token = jsonwebtoken.sign({_id, username, readFloatBE}, secret, {expiresIn: '1d'});
+        const token = jsonwebtoken.sign({_id, username, role}, secret, {expiresIn: '1d'});
         const userData = { token, user };
         ctx.body = { userData };
     }
@@ -77,7 +77,7 @@ class UsersController {
 
     async checkPermission(ctx, next) {
         console.log(ctx.state.user)
-        if (ctx.state.user.role != 0) {
+        if (ctx.state.user.role !== 0) {
             ctx.throw(403, '您没有操作权限');
         }
         await next();
