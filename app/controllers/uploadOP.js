@@ -1,6 +1,6 @@
 const path = require('path');
 
-class HomeController {
+class uploadOPController {
     upload(ctx) {
         const file = ctx.request.files.file;
         const basename = path.basename(file.path);
@@ -8,4 +8,4 @@ class HomeController {
     }
 }
 
-module.exports = new HomeController();
+module.exports = new uploadOPController();
